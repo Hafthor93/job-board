@@ -2,31 +2,68 @@ import React, { useState } from "react";
 import styled from "styled-components";
 import JobListing from "./JobListing";
 import jobListings from "../mockData/jobListings";
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faSearch } from "@fortawesome/free-solid-svg-icons";
+
+const Container = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+`;
+
 
 const FilterContainer = styled.div`
   display: flex;
+  justify-content: center;
   align-items: center;
-  margin-top: 2rem;
-  margin-bottom: 2rem;
+  padding: 1rem;
+  background-color: #f1f1f1;
+  border-radius: 5px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.15);
+  width: 100%;
 `;
 
-const Label = styled.label`
-  font-weight: bold;
-  margin-right: 1rem;
+const SearchContainer = styled.div`
+  margin-right: 1.5rem;
+  width: 30%;
+  display: flex;
 `;
 
 const Input = styled.input`
-  width: 35%;
   padding: 0.5rem;
-  border: 1px solid black;
-  border-radius: 3px;
-  font-weight: bold;
-  
+  width: 100%;
+  border: none;
+  border-radius: 25px;
+  font-size: 0.9rem;
+  box-shadow: 0px 2px 15px rgba(0, 0, 0, 0.1);
+  transition: all 0.3s ease;
+  outline: none;
+  &:focus {
+    box-shadow: 0px 2px 15px rgba(0, 0, 0, 0.2);
+  }
 `;
 
-const Select = styled.select`
-  margin-right: 1rem;
-  padding: 0.5rem;
+const SearchIcon = styled.i`
+  position: absolute;
+  right: 20px;
+`;
+
+const FilterButton = styled.button`
+  
+  padding: 0.5rem 1rem;
+  border: none;
+  border-radius: 25px;
+  font-size: 0.7rem;
+  box-shadow: 0px 2px 15px rgba(0, 0, 0, 0.1);
+  transition: all 0.3s ease;
+  outline: none;
+  margin: 0.5rem 0;
+  cursor: pointer;
+  background: ${props => props.active ? '#38598b' : '#fff'};
+  color: ${props => props.active ? '#fff' : '#38598b'};
+  &:focus {
+    box-shadow: 0px 2px 15px rgba(0, 0, 0, 0.2);
+  }
 `;
 
 function Filter() {
@@ -37,8 +74,8 @@ function Filter() {
     setQuery(event.target.value);
   };
 
-  const handleFilterChange = (event) => {
-    setFilter(event.target.value);
+  const handleFilterChange = (filterType) => {
+    setFilter(filterType);
   };
 
   const filteredJobs = jobListings.filter((job) => {
@@ -62,22 +99,28 @@ function Filter() {
 
   return (
     <>
+    <Container>
       <FilterContainer>
-        <Label htmlFor="filter">Filter by:</Label>
-        <Select id="filter" onChange={handleFilterChange}>
-          <option value="">No filter added</option>
-          <option value="Summer Job">Summer job</option>
-          <option value="Full-Time">Full-time</option>
-          <option value="Part-Time">Part-time</option>
-          
-        </Select>
-        <Input type="text" placeholder="Search" onChange={handleInputChange} />
+        <SearchContainer>
+          <Input
+            type="text"
+            placeholder="Search jobs..."
+            onChange={handleInputChange}
+          />
+          <SearchIcon icon={faSearch}></SearchIcon>
+        </SearchContainer>
+        <FilterButton active={filter === ""} onClick={() => handleFilterChange("")}>No filter</FilterButton>
+        <FilterButton active={filter === "Summer Job"} onClick={() => handleFilterChange("Summer Job")}>Summer Job</FilterButton>
+        <FilterButton active={filter === "Full-Time"} onClick={() => handleFilterChange("Full-Time")}>Full-Time</FilterButton>
+        <FilterButton active={filter === "Part-Time"} onClick={() => handleFilterChange("Part-Time")}>Part-Time</FilterButton>
       </FilterContainer>
       {filteredJobs.map((job) => (
         <JobListing key={job.id} job={job} />
       ))}
+      </Container>
     </>
   );
 }
 
 export default Filter;
+

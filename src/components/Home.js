@@ -2,34 +2,45 @@ import React, { useState } from "react";
 import styled, { createGlobalStyle } from "styled-components";
 import Navbar from "./Navbar";
 import Filter from "./Filter";
-import Search from "./Search";
 import JobListing from "./JobListing";
 import jobListings from "../mockData/jobListings";
+import NewJobListing from "../pages/NewJobListing"
 import JobDetails from "../pages/JobDetails";
+import JobList from "./JobList";
 
 
 
 const GlobalStyle = createGlobalStyle`
   body {
-    font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
-    background-color: #F0F4FD;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 0; 
   }
 `;
 
+
 const Container = styled.div`
-  width: 70%;
-  margin: 0 auto;
-  padding: 1rem;
+  max-width: 100%;
+  margin: auto; 
+
 `;
 
+
 const JobListingsContainer = styled.div`
-  justify-content: space-between;
+  display: flex;
+  flex-direction: column; 
   margin-top: 2rem;
+  
 `;
+
+
 
 
 function Home() {
   const [jobListingsToShow, setJobListingsToShow] = useState(jobListings);
+  
+  
 
   const handleFiltering = (selectedFilter) => {
     if (selectedFilter === "") {
@@ -42,17 +53,16 @@ function Home() {
     }
   };
 
+
+  
+
   return (
     <>
       <GlobalStyle />
       <Container>
-        <Filter handleFiltering={handleFiltering} />
-        
-        <JobListingsContainer>
-          {jobListingsToShow.map((job) => (
-            <JobListing key={job.id} job={job} />
-          ))}
-        </JobListingsContainer>
+      <Filter handleFiltering={handleFiltering} />
+      <JobListingsContainer />
+      <JobList />
       </Container>
     </>
   );

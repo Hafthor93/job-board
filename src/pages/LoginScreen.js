@@ -1,76 +1,134 @@
 import React from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import styled from "styled-components";
 import Navbar from "../components/Navbar";
+import { useState } from "react";
 
 const Container = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
-  margin-top: 2rem;
+  justify-content: center;
+  height: 100vh;
+  background-color: #f5f5f5;
 `;
 
 const Title = styled.h1`
-  font-size: 2rem;
-  margin-bottom: 2rem;
+  font-size: 2.5rem;
   color: #0068d6;
+  margin-bottom: 2rem;
+  text-transform: uppercase;
+  letter-spacing: 2px;
 `;
 
 const FormContainer = styled.form`
   display: flex;
   flex-direction: column;
-  width: 20%;
-  min-width: 300px;
-  border-radius: 5px;
-  background-color: #f5f5f5;
+  width: 300px;
   padding: 2rem;
+  border-radius: 10px;
+  box-shadow: 0px 0px 15px 0px rgba(0,0,0,0.1);
+  background-color: white;
+  margin-bottom: 5rem;
 `;
 
 const Input = styled.input`
-  padding: 0.5rem;
+  padding: 0.7rem;
   margin-bottom: 1rem;
-  border-radius: 3px;
-  border: 1px solid #0068d6;
+  border-radius: 5px;
+  border: 1px solid #e1e1e1;
+  outline: none;
+  &:focus {
+    border-color: #0068d6;
+  }
 `;
 
 const Button = styled.button`
-  padding: 0.5rem;
+  padding: 0.7rem;
   background-color: #0068d6;
   color: #fff;
-  border-radius: 3px;
+  border-radius: 5px;
   border: none;
   cursor: pointer;
-
+  transition: background-color 0.3s ease;
+  
   &:hover {
     background-color: #0051a8;
   }
 `;
 
 const BackLink = styled(Link)`
-  padding: 0.5rem;
-  margin-top: 1rem;
-  background-color: #0068d6;
-  color: #fff;
-  border-radius: 3px;
-  border: none;
-  cursor: pointer;
+  display: inline-block;
+  
+  color: #0068d6;
   text-decoration: none;
-
   &:hover {
-    background-color: #0051a8;
+    text-decoration: underline;
   }
 `;
 
-function LoginScreen() {
+function LoginScreen(login) {
+  const [email, setEmail] = useState("");
+  const [username, setUsername] = useState("");
+  const [password, setPassword] = useState("");
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState(null);
+  const navigate = useNavigate();
+
+  
+
+    
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+
+    setLoading(true);
+    setError(null);
+
+    /* try {
+      await login(email, password); 
+      navigate.push("/");  
+    } catch (err) {
+      setError(err.message);
+    } finally {
+      setLoading(false);
+    }
+  }; */
+
+
+    const response = await fetch("http://localhost:5000/api/users/login", {
+      method: "POST",
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({ username, password }) // Send username and password in the request body
+    });
+
+    const data = await response.json();
+    if(response.ok) {
+      // TODO: Handle successful login (e.g., redirect, store user info, etc.)
+    } else {
+      // TODO: Handle errors (data will contain error information)
+    }
+  };
+
+
+    
+
   return (
     <Container>
       <Title>Sign In</Title>
-      <FormContainer>
+      <FormContainer onSubmit={handleSubmit}>
         <label htmlFor="email">Email</label>
-        <Input type="email" id="email" required />
+        <Input type="text" id="username" name="username" required 
+          value={username} onChange={(e) => setUsername(e.target.value)} />
         <label htmlFor="password">Password</label>
-        <Input type="password" id="password" required />
-        <Button type="submit">Sign In</Button>
+        <Input type="password" id="password" name="password" required 
+          value={password} onChange={(e) => setPassword(e.target.value)} />
+        {error && <p>{error}</p>}
+        <Button type="submit" disabled={loading}>
+          {loading ? "Loading..." : "Sign In"}
+        </Button>
       </FormContainer>
       <BackLink to="/">Back to Home</BackLink>
     </Container>

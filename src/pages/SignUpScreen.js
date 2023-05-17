@@ -2,6 +2,8 @@ import React from "react";
 import styled from "styled-components";
 import Navbar from "../components/Navbar";
 import { Link } from "react-router-dom";
+import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 
 
 const Container = styled.div`
@@ -73,36 +75,106 @@ const BackLink = styled(Link)`
 `;
 
 function SignUpForm() {
+  const [name, setName] = useState("");
+  const [username, setUsername] = useState("");
+  const [password, setPassword] = useState("");
+  const [email, setEmail] = useState("");
+  const [phone, setPhone] = useState("");
+  const [education, setEducation] = useState("");
+  const [workExperience, setWorkExperience] = useState("");
+  const [professionalReferences, setProfessionalReferences] = useState("");
+  const [availability, setAvailability] = useState("");
+  const [signature, setSignature] = useState("");
+  const [date, setDate] = useState("");
+  const navigate = useNavigate();
+  const [errorMessage, setErrorMessage] = useState("");
+
+  
+
+
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+
+    
+    const response = await fetch("https://localhost:7262/api/accounts/signup", {
+      method: "POST",
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({
+      name, username, password, email, phone, education, workExperience,
+      professionalReferences, availability, signature, date
+      }) 
+    });
+
+
+
+    const data = await response.json();
+    if(response.ok) {
+      localStorage.setItem("username", username);
+      navigate("/loginscreen")
+      
+    } else {
+      setErrorMessage(data.message || "An error occurred during registration.");
+      
+    }
+  };
+
+
+  
+
+
+
+
+
   return (
     <Container>
       <Title>Sign Up</Title>
-      <Form>
+      {errorMessage && <p>{errorMessage}</p>}
+      <Form onSubmit={handleSubmit}>
         <Label htmlFor="name">Name</Label>
-        <Input type="text" id="name" name="name" required />
+        <Input type="text" id="name" name="name" required 
+          value={name} onChange={(e) => setName(e.target.value)} />
+
+        <Label htmlFor="username">Username</Label>
+        <Input type="text" id="username" name="username" required 
+          value={username} onChange={(e) => setUsername(e.target.value)} />
+
+        <Label htmlFor="password">Password</Label>
+        <Input type="password" id="password" name="password" required 
+          value={password} onChange={(e) => setPassword(e.target.value)} />
 
         <Label htmlFor="email">Email</Label>
-        <Input type="email" id="email" name="email" required />
+        <Input type="email" id="email" name="email" required 
+          value={email} onChange={(e) => setEmail(e.target.value)} />
 
         <Label htmlFor="phone">Phone</Label>
-        <Input type="tel" id="phone" name="phone" required />
+        <Input type="tel" id="phone" name="phone" required 
+          value={phone} onChange={(e) => setPhone(e.target.value)} />
 
         <Label htmlFor="education">Education History</Label>
-        <TextArea id="education" name="education" rows="5" required />
+        <TextArea id="education" name="education" rows="5" required 
+          value={education} onChange={(e) => setEducation(e.target.value)} />
 
         <Label htmlFor="workExperience">Work Experience</Label>
-        <TextArea id="workExperience" name="workExperience" rows="5" required />
+        <TextArea id="workExperience" name="workExperience" rows="5" required 
+          value={workExperience} onChange={(e) => setWorkExperience(e.target.value)} />
 
         <Label htmlFor="professionalReferences">Professional References</Label>
-        <TextArea id="professionalReferences" name="professionalReferences" rows="5" />
+        <TextArea id="professionalReferences" name="professionalReferences" rows="5"
+          value={professionalReferences} onChange={(e) => setProfessionalReferences(e.target.value)} />
 
         <Label htmlFor="availability">Availability</Label>
-        <Input type="text" id="availability" name="availability" />
+        <Input type="text" id="availability" name="availability" 
+          value={availability} onChange={(e) => setAvailability(e.target.value)} />
 
-        <Label htmlFor="signature">Signature</Label>
-        <Input type="text" id="signature" name="signature" required />
+        <Input type="text" id="signature" name="signature" required 
+          value={signature} onChange={(e) => setSignature(e.target.value)} />
 
         <Label htmlFor="date">Date</Label>
-        <Input type="date" id="date" name="date" required />
+        <Input type="date" id="date" name="date" required 
+          value={date} onChange={(e) => setDate(e.target.value)} />
 
         <Button type="submit">Submit</Button>
         
