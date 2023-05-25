@@ -1,26 +1,29 @@
 import React from "react";
 import styled from "styled-components";
 import { Link } from "react-router-dom";
-import jobs from"../mockData/jobListings";
-import { useDispatch } from 'react-redux';
 import { addJob, removeJob } from "../redux/actions/addJobAction";
-import jobReducer from "../redux/reducers/jobReducer";
-import JobDetails from "../pages/JobDetails";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faMapMarkerAlt, faBuilding, faCalendar } from '@fortawesome/free-solid-svg-icons';
+import { useDispatch } from "react-redux";
+
 
 const JobContainer = styled.div`
-  border: 2px solid gray;
-  border-radius: 7px;
+  border: none;
+  border-radius: 10px;
   padding: 16px;
   margin-bottom: 16px;
+  margin-top: 2rem;
   margin-left: auto;
   margin-right: auto;
   width: 50vw;
   display: flex;
   flex-direction: column;
+  background-color: #fff;
+  box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.1);
+  transition: all 0.3s ease;
+  
   &:hover {
-    border-color: #38598b;
+    box-shadow: 0px 5px 25px rgba(0, 0, 0, 0.2);
   }
 `;
 
@@ -31,13 +34,6 @@ const JobHeader = styled.div`
   text-decoration: none;
 `;
 
-const JobTitle = styled.h2`
-  font-size: 24px;
-  margin-bottom: 8px;
-  color: #38598b;
-  text-decoration: none;
-`;
-
 const JobCompany = styled.p`
   font-size: 16px;
   color: #666;
@@ -45,12 +41,16 @@ const JobCompany = styled.p`
   color: black;
 `;
 
+const JobTitle = styled.h2`
+  font-size: 24px;
+  margin-bottom: 8px;
+  color: #38598b;
+`;
+
 const JobLocation = styled.p`
   font-size: 16px;
-  color: #666;
   margin-bottom: 4px;
-  color: black;
-  text-decoration: none;
+  color: #666;
 `;
 
 const JobType = styled.p`
@@ -95,20 +95,6 @@ const JobDate = styled.span`
   color: #666;
 `;
 
-const Info = styled.p`
-  font-size: 16px;
-  margin-bottom: 16px;
-`;
-
-const Infrastructure = styled.p`
-  font-size: 16px;
-  margin-bottom: 16px;
-`;
-
-const Goals = styled.p`
-  font-size: 16px;
-  margin-bottom: 16px;
-`;
 
 const RemoveButton = styled.button`
   background-color: #f44336;
@@ -139,19 +125,30 @@ const ViewButton = styled(Link)`
   border: none;
   border-radius: 4px;
   cursor: pointer;
-  margin-top: 1rem;
+  margin-top: 2rem;
   text-decoration: none;
+  transition: all 0.3s ease;
+  
+  &:hover {
+    background-color: #2a4565;
+  }
 `;
 
 const ApplyButton = styled.button`
   padding: 8px;
   font-size: 16px;
-  background-color: #42b883;
+  background: linear-gradient(to right, #42b883, #338a3e);
   color: white;
   border: none;
   border-radius: 4px;
   cursor: pointer;
   margin-top: 1rem;
+  display: flex;
+  transition: all 0.3s ease;
+  text-decoration: none;
+  &:hover {
+    background: linear-gradient(to right, #338a3e, #2a6f31);
+  }
 `;
 
 const LocationIcon = styled(FontAwesomeIcon)`
@@ -171,12 +168,26 @@ const CalenderLogo = styled(FontAwesomeIcon)`
 
 
 const JobCard = ({ id, title, company, location, type, logo, description, requirements, date, info, infrastructure, goals }) => {
-    
       const dispatch = useDispatch();
       const handleRemoveJob = () => {
         dispatch(removeJob(id));
-    };
-    
+
+        fetch(`https://localhost:7053/api/Jobs/${id}`, {
+      method: "DELETE",
+    })
+      .then(response => {
+        if (response.ok) {
+        
+          console.log("Job removed successfully");
+        } else {
+          
+          console.error("Failed to remove job");
+        }
+      })
+      .catch(error => {
+        console.error("Error removing job:", error);
+      });
+  };    
 
     return (
     <JobContainer>
@@ -203,12 +214,12 @@ const JobCard = ({ id, title, company, location, type, logo, description, requir
 </JobRequirements>
 
       <JobDate>Date Posted: <CalenderLogo icon={faCalendar} />{date}</JobDate>
-       <Info>{info}</Info>
+       {/* <Info>{info}</Info>
       <Infrastructure>{infrastructure}</Infrastructure>
-      <Goals>{goals}</Goals>
+      <Goals>{goals}</Goals> */}
       <ButtonsContainer>
       <ViewButton as={Link} to={`/jobdetails/${id}`}>View</ViewButton>
-        <ApplyButton>Apply Now</ApplyButton>
+        <ApplyButton as={Link} to={`/jobapplication`} >Apply Now</ApplyButton>
       </ButtonsContainer>
       <RemoveButton onClick={handleRemoveJob}>Remove</RemoveButton>
 

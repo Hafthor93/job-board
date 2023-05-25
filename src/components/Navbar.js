@@ -2,6 +2,9 @@ import React from "react";
 import { Link } from "react-router-dom";
 import styled from "styled-components";
 import NewJobListing from "../pages/NewJobListing";
+import UserIcon from "./UserIcon";
+import { useDispatch, useSelector } from 'react-redux';
+import { logoutUser } from '../redux/actions/addJobAction';
 
 const Container = styled.nav`
   display: flex;
@@ -13,73 +16,89 @@ const Container = styled.nav`
   justify-content: center;
   text-align: center;
   width: 100vw;
+  box-shadow: 0px 2px 10px rgba(0, 0, 0, 0.05);
 `;
 
 const Logo = styled(Link)`
   font-size: 1.5rem;
   font-weight: bold;
-  color: #FFFFFF;
+  color: #FFFF;
   text-decoration: none;
-  margin-right: 5rem;
 `;
 
 const LinksContainer = styled.div`
   display: flex;
   align-items: center;
-  
 `;
 
-const LinkStyled = styled(Link)`
-  margin-right: 1rem;
+const StyledLink = styled(Link)`
+  margin: 0 1rem;
   font-size: 1.2rem;
-  color: #FFFFFF;
+  color: #38598b;
   text-decoration: none;
+
+  &:hover {
+    color: #a2a8d3;
+  }
 `;
 
-const SignInButton = styled(Link)`
+const Button = styled(Link)`
   margin-left: 2rem;
   padding: 0.5rem 1rem;
   background-color: #38598b;
-  color: #FFFFFF;
-  border: 1px solid #38598b;
-  border-radius: 25px;
-  font-size: 0.8rem;
+  color: #fff;
+  border: none;
+  border-radius: 4px;
+  font-size: 0.9rem;
   font-weight: bold;
   text-transform: uppercase;
   text-decoration: none;
   cursor: pointer;
   transition: all 0.2s ease-in-out;
-  
+
   &:hover {
-    background-color: #FFFFFF;
-    color: #0068D6;
-    
+    background-color: #a2a8d3;
+    color: #fff;
   }
 `;
 
-const SignUpButton = styled(SignInButton)`
-  background-color: #38598b;
-  color: #FFFFFF;
-  border: 1px solid #38598b;
-  margin-right: 1rem;
-  &:hover {
-    background-color: #FFFFFF;
-    color: #0068D6;
-    
-  }
+const StyledSpan = styled.span`
+  color: #FFFF;
+  margin-left: 2rem;
+  font-size: 1.2rem;
 `;
+
 
 
 function Navbar() {
+  const dispatch = useDispatch();
+  const user = useSelector(state => state.jobs.user);
+
+  const handleLogout = () => {
+    localStorage.removeItem("username"); // remove username from local storage
+    dispatch(logoutUser()); // dispatch logoutUser action
+  };
+
+
   return (
     <Container>
       <Logo to="/">Job Board</Logo>
       <LinksContainer>
-        <SignInButton as={Link} to="/newjoblisting">New Listing</SignInButton>
-        <SignInButton to="/">Info</SignInButton>
-        <SignInButton as={Link} to="/workplaces">Workplaces</SignInButton>
-        <SignInButton as={Link} to="/login">Sign In</SignInButton>
-        <SignUpButton as={Link} to="/signup">Sign Up</SignUpButton>
+        <Button as={Link} to="/newjoblisting">New Listing</Button>
+        <Button to="/">Info</Button>
+        <Button as={Link} to="/workplaces">Workplaces</Button>
+        {user ? ( // if user is logged in
+          <>
+            <StyledSpan>Welcome, {user}!</StyledSpan>
+            <Button onClick={handleLogout}>Log out</Button> 
+          </>
+        ) : ( // ef user er ekki logged in
+          <>
+            <Button as={Link} to="/login">Sign In</Button>
+            <Button as={Link} to="/signup">Sign Up</Button>
+          </>
+        )}
+        <UserIcon />
       </LinksContainer>
     </Container>
   );

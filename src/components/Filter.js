@@ -4,33 +4,36 @@ import JobListing from "./JobListing";
 import jobListings from "../mockData/jobListings";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faSearch } from "@fortawesome/free-solid-svg-icons";
+import { useSelector } from "react-redux";
+
+
 
 const Container = styled.div`
-  display: flex;
+   display: flex;
   flex-direction: column;
   align-items: center;
 `;
-
 
 const FilterContainer = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
   padding: 1rem;
-  background-color: #f1f1f1;
+  background-color: #f7f9fc;
   border-radius: 5px;
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.15);
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+  margin-bottom: 2rem;
   width: 100%;
 `;
 
 const SearchContainer = styled.div`
+  position: relative;
   margin-right: 1.5rem;
   width: 30%;
-  display: flex;
 `;
 
 const Input = styled.input`
-  padding: 0.5rem;
+    padding: 0.5rem;
   width: 100%;
   border: none;
   border-radius: 25px;
@@ -43,24 +46,27 @@ const Input = styled.input`
   }
 `;
 
-const SearchIcon = styled.i`
+const SearchIcon = styled(FontAwesomeIcon)`
   position: absolute;
-  right: 20px;
+  right: 10px;
+  top: 50%;
+  transform: translateY(-50%);
+  color: #a2a8d3;
 `;
 
 const FilterButton = styled.button`
-  
   padding: 0.5rem 1rem;
   border: none;
   border-radius: 25px;
-  font-size: 0.7rem;
+  font-size: 0.9rem;
   box-shadow: 0px 2px 15px rgba(0, 0, 0, 0.1);
   transition: all 0.3s ease;
   outline: none;
-  margin: 0.5rem 0;
+  margin: 0 0.5rem;
   cursor: pointer;
   background: ${props => props.active ? '#38598b' : '#fff'};
   color: ${props => props.active ? '#fff' : '#38598b'};
+
   &:focus {
     box-shadow: 0px 2px 15px rgba(0, 0, 0, 0.2);
   }
@@ -69,6 +75,7 @@ const FilterButton = styled.button`
 function Filter() {
   const [query, setQuery] = useState("");
   const [filter, setFilter] = useState("");
+  
 
   const handleInputChange = (event) => {
     setQuery(event.target.value);

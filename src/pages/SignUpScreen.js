@@ -10,16 +10,19 @@ const Container = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
+  
 `;
 
-const Title = styled.h1`
-  margin-bottom: 2rem;
-`;
 
 const Form = styled.form`
   display: flex;
   flex-direction: column;
   width: 50%;
+  padding: 2rem;
+  border-radius: 10px;
+  box-shadow: 0px 0px 15px 0px rgba(0,0,0,0.1);
+  background-color: white;
+  margin-top: -0.5rem;
 `;
 
 const Label = styled.label`
@@ -27,51 +30,62 @@ const Label = styled.label`
   margin-bottom: 0.5rem;
   font-size: 1.2rem;
   font-weight: bold;
+  color: #113f67;
 `;
 
 const Input = styled.input`
-  padding: 0.5rem;
+  padding: 0.7rem;
   margin-bottom: 1rem;
-  font-size: 1rem;
-  border-radius: 3px;
-  border: none;
-  box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+  border-radius: 5px;
+  border: 1px solid #e1e1e1;
+  outline: none;
+
+  &:focus {
+    border-color: #113f67;
+  }
 `;
 
 const TextArea = styled.textarea`
-  padding: 0.5rem;
+  padding: 0.7rem;
   margin-bottom: 1rem;
-  font-size: 1rem;
-  border-radius: 3px;
-  border: none;
-  box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+  border-radius: 5px;
+  border: 1px solid #e1e1e1;
+  outline: none;
+  
+  &:focus {
+    border-color: #113f67;
+  }
 `;
 
 const Button = styled.button`
-  padding: 0.5rem 1rem;
-  margin-top: 1rem;
-  margin-bottom: 2rem;
-  background-color: #0068D6;
-  color: #FFFFFF;
+  padding: 0.7rem;
+  background-color: #113f67;
+  color: #fff;
+  border-radius: 5px;
   border: none;
-  border-radius: 3px;
-  font-size: 1rem;
   cursor: pointer;
+  transition: background-color 0.3s ease;
+  
+  &:hover {
+    background-color: #0b2c4d;
+  }
 `;
 
 const BackLink = styled(Link)`
-  padding: 0.5rem;
-  margin-bottom: 2rem;
-  background-color: #0068d6;
+  display: inline-block;
   color: #fff;
-  border-radius: 3px;
-  border: none;
-  cursor: pointer;
   text-decoration: none;
-  text-align: center;
+  margin-top: 2rem;
+
   &:hover {
-    background-color: #0051a8;
+    text-decoration: underline;
   }
+`;
+
+const Title = styled.h2`
+  color: #333;
+  font-size: 2rem;
+  margin-bottom: 2rem;
 `;
 
 function SignUpForm() {
@@ -97,7 +111,7 @@ function SignUpForm() {
     e.preventDefault();
 
     
-    const response = await fetch("https://localhost:7262/api/accounts/signup", {
+    const response = await fetch("https://localhost:7053/api/User/register", {
       method: "POST",
       headers: {
         'Content-Type': 'application/json'
@@ -113,7 +127,7 @@ function SignUpForm() {
     const data = await response.json();
     if(response.ok) {
       localStorage.setItem("username", username);
-      navigate("/loginscreen")
+      navigate("/")
       
     } else {
       setErrorMessage(data.message || "An error occurred during registration.");

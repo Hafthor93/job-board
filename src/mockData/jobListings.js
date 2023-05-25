@@ -14,7 +14,11 @@ const jobs = [
       info:
       "Google LLC is an American multinational technology company that specializes in Internet-related services and products, which include online advertising technologies, a search engine, cloud computing, software, and hardware.",
       infrastructure: ["Cloud computing", "Advertising technologies", "Search engine"],
-      goals: ["Organize the world's information and make it universally accessible and useful", "Empower people to use technology to do more and achieve more"]
+      goals: ["Organize the world's information and make it universally accessible and useful", "Empower people to use technology to do more and achieve more"],
+
+
+      //backgroundImage: "https://media.istockphoto.com/id/1169427542/photo/google.jpg?s=612x612&w=0&k=20&c=rqoG1nVPxeZeIHFqs0M2TI7CBwpZ1rOTG2H3PWTrdBY="
+
     },
     {
       id: 2,
@@ -26,6 +30,10 @@ const jobs = [
       description: "We're seeking a backend developer with experience in Node.js.",
       requirements: ["Experience with Node.js", "Database proficiency", "Strong problem-solving skills"],
       date: "Apr 25",
+      info:
+      "Google LLC is an American multinational technology company that specializes in Internet-related services and products, which include online advertising technologies, a search engine, cloud computing, software, and hardware.",
+      infrastructure: ["Cloud computing", "Advertising technologies", "Search engine"],
+      goals: ["Organize the world's information and make it universally accessible and useful", "Empower people to use technology to do more and achieve more"],
     },
     {
       id: 3,
@@ -37,6 +45,10 @@ const jobs = [
       description: "We're looking for a UX designer with a passion for user research.",
       requirements: ["Experience with user research", "Familiarity with design tools", "Strong portfolio"],
       date: "Apr 24",
+      info:
+      "Google LLC is an American multinational technology company that specializes in Internet-related services and products, which include online advertising technologies, a search engine, cloud computing, software, and hardware.",
+      infrastructure: ["Cloud computing", "Advertising technologies", "Search engine"],
+      goals: ["Organize the world's information and make it universally accessible and useful", "Empower people to use technology to do more and achieve more"],
     },
     {
       id: 4,
@@ -48,6 +60,10 @@ const jobs = [
       description: "We're seeking a marketing coordinator to assist with our summer campaign.",
       requirements: ["Excellent communication skills", "Ability to work in a team", "Attention to detail"],
       date: "Apr 23",
+      info:
+      "Google LLC is an American multinational technology company that specializes in Internet-related services and products, which include online advertising technologies, a search engine, cloud computing, software, and hardware.",
+      infrastructure: ["Cloud computing", "Advertising technologies", "Search engine"],
+      goals: ["Organize the world's information and make it universally accessible and useful", "Empower people to use technology to do more and achieve more"],
     },
     {
       id: 5,
@@ -59,6 +75,10 @@ const jobs = [
       description: "We're looking for a sales associate with a proven track record of success.",
       requirements: ["Experience in sales", "Excellent communication skills", "Results-driven"],
       date: "Apr 22",
+      info:
+      "Google LLC is an American multinational technology company that specializes in Internet-related services and products, which include online advertising technologies, a search engine, cloud computing, software, and hardware.",
+      infrastructure: ["Cloud computing", "Advertising technologies", "Search engine"],
+      goals: ["Organize the world's information and make it universally accessible and useful", "Empower people to use technology to do more and achieve more"],
     },
     {
       id: 6,
@@ -70,6 +90,10 @@ const jobs = [
       description: "We're seeking a product manager with experience in Agile methodologies.",
       requirements: ["Experience in Agile methodologies", "Ability to prioritize tasks", "Strong problem-solving skills"],
       date: "Apr 21",
+      info:
+      "Google LLC is an American multinational technology company that specializes in Internet-related services and products, which include online advertising technologies, a search engine, cloud computing, software, and hardware.",
+      infrastructure: ["Cloud computing", "Advertising technologies", "Search engine"],
+      goals: ["Organize the world's information and make it universally accessible and useful", "Empower people to use technology to do more and achieve more"],
     },
     {
       id: 7,
@@ -92,6 +116,10 @@ const jobs = [
       description: "We're seeking a graphic designer with a strong portfolio of design work.",
       requirements: ["Proficiency in design tools", "Strong portfolio", "Ability to work in a team"],
       date: "Apr 19",
+      info:
+      "Google LLC is an American multinational technology company that specializes in Internet-related services and products, which include online advertising technologies, a search engine, cloud computing, software, and hardware.",
+      infrastructure: ["Cloud computing", "Advertising technologies", "Search engine"],
+      goals: ["Organize the world's information and make it universally accessible and useful", "Empower people to use technology to do more and achieve more"],
       },
       {
       id: 9,
@@ -103,6 +131,10 @@ const jobs = [
       description: "We're looking for a content writer with experience in SEO.",
       requirements: ["Experience in SEO", "Excellent writing skills", "Ability to work independently"],
       date: "Apr 18",
+      info:
+      "Google LLC is an American multinational technology company that specializes in Internet-related services and products, which include online advertising technologies, a search engine, cloud computing, software, and hardware.",
+      infrastructure: ["Cloud computing", "Advertising technologies", "Search engine"],
+      goals: ["Organize the world's information and make it universally accessible and useful", "Empower people to use technology to do more and achieve more"],
       },
       {
       id: 10,
@@ -114,6 +146,10 @@ const jobs = [
       description: "We're seeking an HR manager with experience in talent acquisition and retention.",
       requirements: ["Experience in talent acquisition and retention", "Strong communication skills", "Ability to lead a team"],
       date: "Apr 17",
+      info:
+      "Google LLC is an American multinational technology company that specializes in Internet-related services and products, which include online advertising technologies, a search engine, cloud computing, software, and hardware.",
+      infrastructure: ["Cloud computing", "Advertising technologies", "Search engine"],
+      goals: ["Organize the world's information and make it universally accessible and useful", "Empower people to use technology to do more and achieve more"],
       },
       ];
       export default jobs;

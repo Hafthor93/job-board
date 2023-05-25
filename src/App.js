@@ -9,6 +9,8 @@ import Navbar from "./components/Navbar";
 import NewJobListing from "./pages/NewJobListing"
 import JobCard from "./components/JobCard";
 import Workplaces from "./components/Workplaces";
+import JobApplicationForm from "./pages/JobApplicationForm";
+import CompanyDetails from "./components/CompanyDetails";
 
 
 
@@ -22,10 +24,12 @@ function App() {
           <Route path="/" element={<Home />} />
           <Route path="/login" element={<LoginScreen />} />
           <Route path="/signup" element={<SignUpScreen />} />
-          <Route path="/jobdetails/:id" element={<JobDetails job={jobs} />} />
+          <Route path="/jobdetails/:id" element={<JobDetails />} />
           <Route path="/newjoblisting" element={<NewJobListing />} />
           <Route path="/jobcard" element={<JobCard />} />
           <Route path="/workplaces" element={<Workplaces />} />
+          <Route path="/jobapplication" element={<JobApplicationForm />} />
+          <Route path="/companydetails/:id" element={<CompanyDetails />} />
         </Routes>
         
       </div>

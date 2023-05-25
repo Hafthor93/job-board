@@ -5,7 +5,7 @@ import { addJobAction } from '../redux/actions/addJobAction';
 import { applyMiddleware } from 'redux';
 import thunkMiddleware from 'redux-thunk';
 import { configureStore } from '@reduxjs/toolkit';
-import thunk from 'redux-thunk';
+
 
 
 

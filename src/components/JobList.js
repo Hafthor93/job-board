@@ -1,11 +1,8 @@
-import React from "react";
+import React, { useEffect } from "react";
 import styled from "styled-components";
 import JobCard from "./JobCard";
-import { useSelector } from "react-redux";
-import { useState } from "react";
-
-
-
+import { useSelector, useDispatch } from "react-redux";
+import { fetchJobs } from "../redux/actions/addJobAction";
 
 const JobList = styled.div`
   display: flex;
@@ -13,11 +10,13 @@ const JobList = styled.div`
 `;
 
 const Jobs = () => {
-const jobs = useSelector(state => state.jobs.jobs);
+  const jobs = useSelector(state => state.jobs.jobs);
+  const dispatch = useDispatch();  
 
-
-
-
+  
+  useEffect(() => {
+    dispatch(fetchJobs());
+  }, [dispatch]);
 
   return (
     <JobList>
