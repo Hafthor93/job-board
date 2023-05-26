@@ -11,6 +11,7 @@ import JobCard from "./components/JobCard";
 import Workplaces from "./components/Workplaces";
 import JobApplicationForm from "./pages/JobApplicationForm";
 import CompanyDetails from "./components/CompanyDetails";
+import Footer from "./components/Footer";
 
 
 
@@ -31,7 +32,7 @@ function App() {
           <Route path="/jobapplication" element={<JobApplicationForm />} />
           <Route path="/companydetails/:id" element={<CompanyDetails />} />
         </Routes>
-        
+        <Footer />
       </div>
     
   );

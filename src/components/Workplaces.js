@@ -17,6 +17,8 @@ const Input = styled.input`
   &:focus {
     box-shadow: 0px 2px 15px rgba(0, 0, 0, 0.2);
   }
+  margin-bottom: -3rem;
+  
 `;
 
 
@@ -25,6 +27,7 @@ const MainContainer = styled.div`
   flex-direction: column;
   align-items: center;
   height: 100vh;
+  margin-top: 1rem;
 `;
 
 const SearchContainer = styled.div`

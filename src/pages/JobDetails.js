@@ -28,6 +28,7 @@ const JobLogo = styled.img`
   height: 150px;
   object-fit: contain;
   margin-bottom: 2rem;
+  
 `;
 
 const JobTitle = styled.h2`

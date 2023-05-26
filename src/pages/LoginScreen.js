@@ -12,13 +12,13 @@ const Container = styled.div`
   align-items: center;
   justify-content: center;
   height: 100vh;
-  background: linear-gradient(120deg, #FFFF 0%, white 100%);
+  background: #FFFF;
 `;
 
 const Title = styled.h1`
-  font-size: 2.5rem;
-  color: #fff;
-  margin-bottom: 2rem;
+  font-size: 3rem;
+  color: #507DBC;
+  margin-bottom: 2.5rem;
   text-transform: uppercase;
   letter-spacing: 2px;
 `;
@@ -26,19 +26,24 @@ const Title = styled.h1`
 const FormContainer = styled.form`
   display: flex;
   flex-direction: column;
-  width: 300px;
-  padding: 2rem;
-  border-radius: 10px;
-  box-shadow: 0px 0px 50px 0px rgba(0,0,0,0.1);
+  width: 400px; 
+  padding: 3rem;
+  border-radius: 15px;
+  box-shadow: 0px 10px 20px 0px rgba(0,0,0,0.1);
   background-color: white;
-  margin-bottom: 15rem;
+  transition: box-shadow 0.3s ease-in-out;
+
+  &:hover {
+    box-shadow: 10px 15px 25px 10px rgba(0,0,0,0.2);
+  }
 `;
 
 const Input = styled.input`
-  padding: 0.7rem;
-  margin-bottom: 1rem;
-  border-radius: 5px;
-  border: 1px solid #e1e1e1;
+  padding: 1rem;
+  margin-bottom: 1.5rem;
+  border-radius: 10px;
+  border: 2px solid #507DBC;
+  font-size: 1.2rem;
   outline: none;
 
   &:focus {
@@ -46,33 +51,37 @@ const Input = styled.input`
   }
 `;
 
+
 const Button = styled.button`
-  padding: 0.7rem;
-  background-color: #113f67;
+  padding: 1rem;
+  background-color: #507DBC;
   color: #fff;
-  border-radius: 5px;
+  border-radius: 10px;
   border: none;
   cursor: pointer;
+  font-size: 1.2rem;
   transition: background-color 0.3s ease;
   
   &:hover {
-    background-color: #0b2c4d;
+    background-color: #38598b;
   }
 `;
 
 const BackLink = styled(Link)`
   display: inline-block;
   color: #fff;
+  margin-top: 2rem;
   text-decoration: none;
   &:hover {
     text-decoration: underline;
   }
 `;
 
-const FormTitle = styled.h2`
-  color: #333;
-  font-size: 2rem;
-  margin-bottom: 2rem;
+
+const ErrorMessage = styled.p`
+  color: red;
+  font-weight: bold;
+  margin-bottom: 1rem;
 `;
 
 function LoginScreen() {
@@ -121,7 +130,7 @@ function LoginScreen() {
 
   return (
     <Container>
-      <FormTitle>Sign In</FormTitle>
+      
       <Title>Sign In</Title>
       <FormContainer onSubmit={handleSubmit}>
         <label htmlFor="email">Username</label>
@@ -130,7 +139,7 @@ function LoginScreen() {
         <label htmlFor="password">Password</label>
         <Input type="password" id="password" name="password" required 
           value={password} onChange={(e) => setPassword(e.target.value)} />
-        {error && <p>{error}</p>}
+        {error && <ErrorMessage>{error}</ErrorMessage>}
         <Button type="submit" disabled={loading}>
           {loading ? "Loading..." : "Sign In"}
         </Button>

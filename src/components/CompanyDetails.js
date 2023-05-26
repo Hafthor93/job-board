@@ -7,10 +7,11 @@ const MainContainer = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
-  padding: 20px;
-  max-width: 1200px;
+  padding: 40px;
+  max-width: 1400px; 
   margin: 0 auto;
 `;
+
 
 const CompanyContainer = styled.div`
   display: flex;
@@ -18,7 +19,6 @@ const CompanyContainer = styled.div`
   width: 100%;
   box-shadow: 0px 3px 15px rgba(0,0,0,0.1);
   transition: box-shadow 0.3s ease-in-out;
-
   &:hover {
     box-shadow: 0px 5px 25px rgba(0,0,0,0.2);
   }
@@ -43,7 +43,7 @@ const ImageContainer = styled.div`
   background-position: center;
   background-repeat: no-repeat;
   background-size: cover;
-  height: 200px;
+  height: 250px;
 `;
 
 const DetailContainer = styled.div`
@@ -55,10 +55,11 @@ const DetailContainer = styled.div`
 `;
 
 const Logo = styled.img`
-  width: 50px;
-  height: 50px;
+  width: 100px;  
+  height: 100px; 
   object-fit: contain;
-  margin-right: 10px;
+  margin-right: 20px;
+  
 `;
 
 const TitleContainer = styled.div`
@@ -67,29 +68,29 @@ const TitleContainer = styled.div`
 `;
 
 const Title = styled.h1`
-  font-size: 2rem;
+  font-size: 3rem;
   color: #38598b;
 `;
 
 const About = styled.p`
-  font-size: 1rem;
+  font-size: 1.2rem; 
   color: #666;
 `;
 
 const Address = styled.p`
-  font-size: 1rem;
+  font-size: 1.2rem; 
   color: #666;
 `;
 
 const BackButton = styled.button`
-  margin-top: 20px;
-  padding: 10px 20px;
+  margin-top: 40px; 
+  padding: 15px 30px; 
   border: none;
   border-radius: 5px;
   background-color: #38598b;
   color: #fff;
   cursor: pointer;
-
+  font-size: large;
   &:hover {
     background-color: #2a3f66;
   }
