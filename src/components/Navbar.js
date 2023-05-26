@@ -85,7 +85,7 @@ function Navbar() {
       <Logo to="/">Job Board</Logo>
       <LinksContainer>
         <Button as={Link} to="/newjoblisting">New Listing</Button>
-        <Button to="/">Info</Button>
+        <Button as={Link} to="/aboutus">About Us</Button>
         <Button as={Link} to="/workplaces">Workplaces</Button>
         {user ? ( // if user is logged in
           <>

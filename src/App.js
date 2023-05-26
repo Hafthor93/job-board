@@ -12,6 +12,7 @@ import Workplaces from "./components/Workplaces";
 import JobApplicationForm from "./pages/JobApplicationForm";
 import CompanyDetails from "./components/CompanyDetails";
 import Footer from "./components/Footer";
+import AboutUs from "./components/AboutUs";
 
 
 
@@ -31,6 +32,7 @@ function App() {
           <Route path="/workplaces" element={<Workplaces />} />
           <Route path="/jobapplication" element={<JobApplicationForm />} />
           <Route path="/companydetails/:id" element={<CompanyDetails />} />
+          <Route path="/aboutus" element={<AboutUs />} />
         </Routes>
         <Footer />
       </div>

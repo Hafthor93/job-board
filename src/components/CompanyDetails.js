@@ -10,6 +10,7 @@ const MainContainer = styled.div`
   padding: 40px;
   max-width: 1400px; 
   margin: 0 auto;
+  margin-top: 9rem;
 `;
 
 
@@ -91,6 +92,7 @@ const BackButton = styled.button`
   color: #fff;
   cursor: pointer;
   font-size: large;
+  margin-bottom: 20px;
   &:hover {
     background-color: #2a3f66;
   }
