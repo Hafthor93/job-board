@@ -12,7 +12,7 @@ const JobContainer = styled.div`
   border-radius: 10px;
   padding: 16px;
   margin-bottom: 16px;
-  margin-top: 2rem;
+  margin-top: 0.5rem;
   margin-left: auto;
   margin-right: auto;
   width: 50vw;
